@@ -15,7 +15,7 @@ namespace Alura.LeilaoOnline.Core
 		{
 			return leilao.Lances
 				.DefaultIfEmpty(new Lance(null, 0))
-				.Where(l => l.Valor >= ValorDestino)
+				.Where(l => l.Valor > ValorDestino)
 				.OrderBy(l => l.Valor)
 				.FirstOrDefault();
 		}

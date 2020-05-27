@@ -13,9 +13,11 @@ namespace Alura.LeilaoOnline.Tests
                     int quantidadeLaces,
                     double[] ofertas)
         {
-            //Arrange
-            var leilao = new Leilao("Van gogh");
-            var maria = new Interessada("Maria", leilao);
+			//Arrange
+			IModalidadeAvaliacao modalidade
+						= new MaiorValor();
+			var leilao = new Leilao("Van gogh", modalidade);
+			var maria = new Interessada("Maria", leilao);
             var jose = new Interessada("Jose", leilao);
 
             leilao.IniciaPregao();
@@ -44,9 +46,11 @@ namespace Alura.LeilaoOnline.Tests
                     int quantidadeLaces, 
                     double[] ofertas)
         {
-            //Arrange
-            var leilao = new Leilao("Van gogh");
-            var jose = new Interessada("Jose", leilao);
+			//Arrange
+			IModalidadeAvaliacao modalidade
+						= new MaiorValor();
+			var leilao = new Leilao("Van gogh", modalidade);
+			var jose = new Interessada("Jose", leilao);
             var maria = new Interessada("Maria", leilao);
 
             leilao.IniciaPregao();

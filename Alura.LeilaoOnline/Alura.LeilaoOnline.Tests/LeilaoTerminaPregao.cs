@@ -7,7 +7,7 @@ namespace Alura.LeilaoOnline.Tests
     public class LeilaoTerminaPregao
     {
 		[Theory]
-		[InlineData(1250, 1200, new double[] { 800, 1150, 1400, 1250 })]
+		[InlineData(1200, 1250, new double[] { 800, 1150, 1400, 1250 })]
 		public void RenornaValorSuperiorMaisProximoDadoEsteCenario(
 					double valorDestino,
 					double valorEsperado,
@@ -83,8 +83,10 @@ namespace Alura.LeilaoOnline.Tests
         [Fact]
         public void RetornaZeroDadoLeilaoSemLances()
         {
-            //Arrange
-            var leilao = new Leilao("Van gogh");
+			//Arrange
+			IModalidadeAvaliacao modalidade
+						= new MaiorValor();
+            var leilao = new Leilao("Van gogh", modalidade);
 			leilao.IniciaPregao();
 
             //Act - método sob teste
@@ -101,11 +103,13 @@ namespace Alura.LeilaoOnline.Tests
         [Fact]
         public void LancaInvalidOperationExceptionCasoTerminoPregaoNaoIniciado()
         {
-            //Arrange
-            var leilao = new Leilao("Van gogh");
+			//Arrange
+			IModalidadeAvaliacao modalidade
+						= new MaiorValor();
+			var leilao = new Leilao("Van gogh", modalidade);
 
-            //Asset
-            var msgObtida = Assert.Throws<InvalidOperationException>(
+			//Asset
+			var msgObtida = Assert.Throws<InvalidOperationException>(
                 //Act - método sob teste
                 () => leilao.TerminaPregao());
 
